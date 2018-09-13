@@ -8,12 +8,13 @@ var app = express();
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended:true}));
 
-router.post('/',(req,res) => {
+router.get('/',(req,res) => {
 
-  var obJ = {
+   res.render('index');
+/*  var obJ = {
 
       Name : req.body.name,
-      
+
   };
 
   mongo.connec(function(err){
@@ -39,7 +40,7 @@ router.post('/',(req,res) => {
           });
        }
 
-    });
+    });  */
 
 });
 

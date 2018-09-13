@@ -8,6 +8,8 @@
  const port = process.env.PORT || 3000;
  app.use(require('./routes/allRouter'));
 
+ app.set('view engine','ejs');
+
  app.listen(port,(req,res) => {
 
      console.log("Server is running at:".green +port);
