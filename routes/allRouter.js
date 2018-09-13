@@ -51,7 +51,7 @@ router.post('/fetch',(req,res) => {
     mongo.connec(function(err){
 
       if(err){
-        console.log("Error:".red +err);
+        console.log("Database Error:".red +err);
       }
 
       else{
@@ -73,9 +73,11 @@ router.post('/fetch',(req,res) => {
                 var me = count;
                if(me>0){
                  res.send("True");
+                 console.log("Response:True".yellow );
                }
                else{
                  res.send("False");
+                  console.log("Response:False".yellow );
                }
 
              mongo.con.close();
