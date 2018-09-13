@@ -13,7 +13,7 @@ router.post('/',(req,res) => {
   var obJ = {
 
       Name : req.body.name,
-      Continent:req.body.cont
+      
   };
 
   mongo.connec(function(err){
