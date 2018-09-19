@@ -76,7 +76,7 @@ router.post('/fetch',(req,res) => {
                  console.log("Response:True".yellow );
                }
                else{
-                 res.send("False");
+                 res.send("Sorry we're not serving here,but soon will.");
                   console.log("Response:False".yellow );
                }
 
@@ -89,6 +89,43 @@ router.post('/fetch',(req,res) => {
       }
     });
 });
+
+     router.post('/register',(req,res) => {
+
+          var data = {
+
+            _id:req.body.userId,
+             Name:req.body.name,
+             Email:req.body.email
+          };
+
+          mongo.connec(function(err){
+
+             if(err){
+
+               console.log("Error:".red +err);
+             }
+             else{
+
+               var collection = mongo.con.db("Tiffino_db").collection("Users");
+
+                 collection.insertOne(data,(err,resp) => {
+
+                      if(err){
+
+                           console.log("Error:" +err);
+                           res.send("Error:" +err);
+                      }
+                      else{
+
+                        console.log("User created.");
+                        res.send("User created");
+                      }
+                 });
+             }
+
+         });
+     });
 
 
 module.exports = router;
