@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const mongo = require('../db.js');
 const bodyParser = require('body-parser');
+const moment = require('moment');
+
 var app = express();
 
 router.use(bodyParser.json());
@@ -92,12 +94,15 @@ router.post('/fetch',(req,res) => {
 
      router.post('/register',(req,res) => {
 
+          var time = moment().format('YYYY MM DD');
+
           var data = {
 
             _id:req.body.id,
              Name:req.body.username,
              Email:req.body.email,
-             Device_token:req.body.device_token
+             Device_token:req.body.device_token,
+             Joined:time
 
 
           };
