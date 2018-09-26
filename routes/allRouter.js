@@ -94,9 +94,12 @@ router.post('/fetch',(req,res) => {
 
           var data = {
 
-            _id:req.body.userId,
-             Name:req.body.name,
-             Email:req.body.email
+            _id:req.body.id,
+             Name:req.body.username,
+             Email:req.body.email,
+             Device token:req.body.device_token
+
+             Device token:req.body.token
           };
 
           mongo.connec(function(err){
