@@ -97,9 +97,9 @@ router.post('/fetch',(req,res) => {
             _id:req.body.id,
              Name:req.body.username,
              Email:req.body.email,
-             Device token:req.body.device_token
+             Device_token:req.body.device_token
 
-             
+
           };
 
           mongo.connec(function(err){
