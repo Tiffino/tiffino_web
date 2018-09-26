@@ -99,7 +99,7 @@ router.post('/fetch',(req,res) => {
              Email:req.body.email,
              Device token:req.body.device_token
 
-             Device token:req.body.token
+             
           };
 
           mongo.connec(function(err){
