@@ -135,5 +135,35 @@ router.post('/fetch',(req,res) => {
          });
      });
 
+    
+     router.post('/offers',(req,res) => {
+
+         var obj = req.body.place;
+
+         mongo.connec(function(err){
+
+              if(err){
+               
+                  console.log("Error:".red +err);
+               }
+              else{
+               
+                 var coll = mongo.con.db("Tiffino_db").collection("Offers");
+
+                  coll.find({Name:obj},{projection:{_id:0}}).toArray((err,result) => {
+
+                         if(err){
+                          console.log("Error:".red, +err);
+                         }
+                         else{
+                          res.send(result);
+                          mongo.con.close();
+                         }
+                  });
+
+               }
+         });
+
+     });
 
 module.exports = router;
