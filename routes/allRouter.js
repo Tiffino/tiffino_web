@@ -148,20 +148,33 @@ router.post('/fetch',(req,res) => {
                }
               else{
                
-                 var coll = mongo.con.db("Tiffino_db").collection("Offers");
+               var coll = mongo.con.db("Tiffino_db").collection("Offers");
 
-                  coll.find({Name:obj},{projection:{_id:0}}).toArray((err,result) => {
+             /*   coll.find({},{projection:{_id:0}}).forEach((doc) => {
+
+                     res.send(doc.Name);
+                });  */ 
+
+              coll.find({Name:obj},{projection:{_id:0}}).toArray((err,result) => {
 
                          if(err){
                           console.log("Error:".red, +err);
                          }
                          else{
-                          res.send(result);
-                          mongo.con.close();
-                         }
-                  });
 
-               }
+                     // for(var i = 0;i<result.length;i++){
+
+                           //output = result.map(r => r.Name);
+                           output = result.map(r => ({"Name":r.Name}));
+                      
+                     //   }
+                           res.send(output);
+                           mongo.con.close();
+                        
+                      }   
+                  });  
+
+               }   
          });
 
      });
