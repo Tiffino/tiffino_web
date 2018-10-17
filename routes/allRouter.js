@@ -168,7 +168,7 @@ router.post('/fetch',(req,res) => {
                            output = result.map(r => ({"Image":r.Image}));
                       
                      //   }
-                           res.json(output);
+                           res.status(200).json(output);
                            mongo.con.close();
                         
                       }   
