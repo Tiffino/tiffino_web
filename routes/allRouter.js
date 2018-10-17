@@ -165,7 +165,7 @@ router.post('/fetch',(req,res) => {
                      // for(var i = 0;i<result.length;i++){
 
                            //output = result.map(r => r.Name);
-                           output = result.map(r => ({"Name":r.Name}));
+                           output = result.map(r => ({"Image":r.Image}));
                       
                      //   }
                            res.send(output);
