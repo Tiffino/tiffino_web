@@ -179,7 +179,7 @@ router.post('/fetch',(req,res) => {
 
      });
 
-     router.get('Test-Okhttp',(req,res) => {
+     router.get('/test',(req,res) => {
 
           mongo.connec(function(err){
 
@@ -191,7 +191,7 @@ router.post('/fetch',(req,res) => {
 
                 var coll = mongo.con.db('Tiffino_db').collection('Offers');
 
-                col.find({},{_id:0,Image:0}).toArray((err,result) =>{
+                coll.find({},{_id:0,Image:0}).toArray((err,result) =>{
 
                      if(err){
 
