@@ -179,4 +179,35 @@ router.post('/fetch',(req,res) => {
 
      });
 
+     router.get('Test-Okhttp',(req,res) => {
+
+          mongo.connec(function(err){
+
+               if(err){
+
+                console.log('Error:'.red +err);
+               }
+               else{
+
+                var coll = mongo.con.db('Tiffino_db').collection('Offers');
+
+                col.find({},{_id:0,Image:0}).toArray((err,result) =>{
+
+                     if(err){
+
+                      console.log("Error:".red, +err);
+                     }
+                     else{
+
+                      output = result.map(r => ({"Name":r.Name}));
+
+                      res.send(output);
+                      mongo.con.close();
+                     }
+
+                });
+              }
+          });
+     });
+
 module.exports = router;
