@@ -210,4 +210,35 @@ router.post('/fetch',(req,res) => {
           });
      });
 
+     router.get('/servingLocations',(req,res) => {
+
+          mongo.connec(function(err){
+
+               if(err){
+
+                console.log('Error:'.red +err);
+               }
+               else{
+
+                var coll = mongo.con.db('Tiffino_db').collection('Serving_locations');
+
+                coll.find({},{_id:0}).toArray((err,result) =>{
+
+                     if(err){
+
+                      console.log("Error:".red, +err);
+                     }
+                     else{
+
+                      output = result.map(r => ({"Name":r.Name},{"Image":r.Image}));
+
+                      res.send(output);
+                      mongo.con.close();
+                     }
+
+                });
+              }
+          });
+     });
+
 module.exports = router;
