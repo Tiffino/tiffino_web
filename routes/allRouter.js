@@ -230,7 +230,7 @@ router.post('/fetch',(req,res) => {
                      }
                      else{
 
-                      output = result.map(r => ({"Name":r.Name},{"Image":r.Image}));
+                      output = result.map(r => ({"Name":r.Name,"Image":r.Image}));
 
                       res.send(output);
                       mongo.con.close();
