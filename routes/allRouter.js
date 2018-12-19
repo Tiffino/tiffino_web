@@ -92,6 +92,8 @@ router.post('/fetch',(req,res) => {
     });
 });
 
+ //Simply register user...
+
      router.post('/register',(req,res) => {
 
           var time = moment().format('YYYY MM DD');
@@ -135,7 +137,68 @@ router.post('/fetch',(req,res) => {
          });
      });
 
+     // Check user exists before registering...
+
+     router.post('/checkbeforeregister',(req,res) => {
+
+             var data = {
+
+            _id:req.body.id,
+             Name:req.body.username,
+             Email:req.body.email,
+             Device_token:req.body.device_token,
+             Joined:time
+
+           };
+
+            mongo.connec(function(err){
+
+                 if(err){
+
+                  console.log("Error:".red +err)
+                 }
+                 else{
+
+                  mongo.con.db("Tiffino_db").findOne({_id:req.body.id},function(err,user){
+
+                       if(err){
+
+                        console.log("Error:".red +err);
+                       }  
+                       if(user){
+                         
+                         res.send("User exists");
+                       }
+                       else{
+
+                        var collection = mongo.con.db("Tiffino_db").collection("Users");
+
+                        collection.insertOne(data,(err,resp) => {
+                                
+                               if(err){
+                                   
+                                   console.log("Error:".red +err);
+                               }  
+                               else{
+
+                                  console.log("User created".green);
+                               }
+
+                         });
+
+                       }
+
+                  });
+
+                 }
+            });
+
+     });
+
     
+
+    // Get offer images based on locations...
+
      router.post('/offers',(req,res) => {
 
          var obj = req.body.place;
@@ -209,6 +272,8 @@ router.post('/fetch',(req,res) => {
               }
           });
      });
+
+     // Serving locations...
 
      router.get('/servingLocations',(req,res) => {
 
