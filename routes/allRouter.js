@@ -104,10 +104,8 @@ router.post('/fetch',(req,res) => {
              Name:req.body.username,
              Email:req.body.email,
              Device_token:req.body.device_token,
-             Joined:time
-
-
-          };
+              
+           };
 
           mongo.connec(function(err){
 
@@ -147,8 +145,7 @@ router.post('/fetch',(req,res) => {
              Name:req.body.username,
              Email:req.body.email,
              Device_token:req.body.device_token,
-             Joined:time
-
+             
            };
 
             mongo.connec(function(err){
@@ -159,7 +156,7 @@ router.post('/fetch',(req,res) => {
                  }
                  else{
 
-                  mongo.con.db("Tiffino_db").findOne({_id:req.body.id},function(err,user){
+                  mongo.con.db("Tiffino_db").collection("Users").findOne({_id:req.body.id},function(err,user){
 
                        if(err){
 
@@ -178,13 +175,17 @@ router.post('/fetch',(req,res) => {
                                if(err){
                                    
                                    console.log("Error:".red +err);
+                                   res.send("error:" +err);
                                }  
                                else{
 
                                   console.log("User created".green);
+                                  res.send("User created");
                                }
 
                          });
+
+                        mongo.con.close();
 
                        }
 
